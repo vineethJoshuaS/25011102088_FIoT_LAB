@@ -1,19 +1,11 @@
-# CONTINUOUS ASSESSMENT 5 - SUBTASK B
+# CAT 5 Subtask: TASK5B - Timer Modes & Periodic Waveforms
 
-## Timer Modes (Mode 1 16-Bit & Mode 2 8-Bit Auto-Reload)
+## Overview
+This section implements precise timer configurations for periodic waveform synthesis and event counting.
 
-**STUDENT REGISTER NO:** 25011102088  
-**COURSE:** Foundations of IoT (FIoT)
-
----
-
-### Overview
-This folder contains the practical implementations, firmware source code, Keil/STM32CubeIDE projects, and hardware documentation for Timer Modes (Mode 1 16-Bit & Mode 2 8-Bit Auto-Reload).
-
-### Circuit Schematic
 ![Circuit Diagram](circuit.png)
 
 ---
 
 ### Subtasks Index
-Please refer to the subtask directories for individual source code, compilation targets, and technical reports.
+- [TASK5B.1](TASK5B.1/): Timer 0 Mode 1 Periodic Delay Generation

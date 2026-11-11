@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,16 +91,28 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  char *banner = "\r\n========================================\r\n"
+                 " STM32F4 USART2 Telemetry Stream Active\r\n"
+                 " Baud Rate: 115200 | Mode: 8-N-1\r\n"
+                 "========================================\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t*)banner, strlen(banner), HAL_MAX_DELAY);
+  uint32_t sampleCount = 0;
+  char telemetryBuf[128];
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+    sampleCount++;
+    snprintf(telemetryBuf, sizeof(telemetryBuf), 
+             "[HEARTBEAT] Packet #%lu | System Uptime: %lu ms | State: NORMAL\r\n", 
+             (unsigned long)sampleCount, (unsigned long)HAL_GetTick());
+    HAL_UART_Transmit(&huart2, (uint8_t*)telemetryBuf, strlen(telemetryBuf), HAL_MAX_DELAY);
+    
+    // Toggle on-board LED PA5
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }

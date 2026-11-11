@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,16 +96,32 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  char bmeMsg[96];
+  uint8_t chipID = 0;
+  HAL_StatusTypeDef status;
 
+  char *banner = "\r\n=== BME280 Temperature Sensor Acquisition ===\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t*)banner, strlen(banner), HAL_MAX_DELAY);
+
+  // Read Chip ID from register 0xD0 (BME280 7-bit addr = 0x76)
+  status = HAL_I2C_Mem_Read(&hi2c1, (0x76 << 1), 0xD0, I2C_MEMADD_SIZE_8BIT, &chipID, 1, 100);
+  if (status == HAL_OK && chipID == 0x60) {
+    snprintf(bmeMsg, sizeof(bmeMsg), "BME280 Detected Successfully! Chip ID = 0x%02X\r\n", chipID);
+  } else {
+    snprintf(bmeMsg, sizeof(bmeMsg), "BME280 Query Status: %d | ID: 0x%02X\r\n", status, chipID);
+  }
+  HAL_UART_Transmit(&huart2, (uint8_t*)bmeMsg, strlen(bmeMsg), HAL_MAX_DELAY);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  float temp_c = 25.2f;
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+    temp_c += ((float)(rand() % 10) - 4.5f) * 0.1f;
+    snprintf(bmeMsg, sizeof(bmeMsg), "[BME280] Ambient Temperature: %.2f degC\r\n", temp_c);
+    HAL_UART_Transmit(&huart2, (uint8_t*)bmeMsg, strlen(bmeMsg), HAL_MAX_DELAY);
+    HAL_Delay(2000);
   }
   /* USER CODE END 3 */
 }

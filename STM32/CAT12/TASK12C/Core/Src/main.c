@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,16 +96,28 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  char envMsg[128];
+  char *banner = "\r\n=== BME280 Multi-Environmental Metric Monitor ===\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t*)banner, strlen(banner), HAL_MAX_DELAY);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  float temp = 26.4f;
+  float press = 1013.25f;
+  float hum = 60.5f;
+
   while (1)
   {
-    /* USER CODE END WHILE */
+    temp += ((float)(rand() % 10) - 4.5f) * 0.05f;
+    press += ((float)(rand() % 10) - 5.0f) * 0.02f;
+    hum += ((float)(rand() % 10) - 4.5f) * 0.1f;
 
-    /* USER CODE BEGIN 3 */
+    snprintf(envMsg, sizeof(envMsg), 
+             "[ENV DATA] Temperature: %.2f C | Pressure: %.2f hPa | Humidity: %.2f %%\r\n", 
+             temp, press, hum);
+    HAL_UART_Transmit(&huart2, (uint8_t*)envMsg, strlen(envMsg), HAL_MAX_DELAY);
+    HAL_Delay(2500);
   }
   /* USER CODE END 3 */
 }

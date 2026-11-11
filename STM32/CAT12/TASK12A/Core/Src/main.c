@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,16 +95,32 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  char scanMsg[80];
+  char *banner = "\r\n=== STM32 I2C Bus Scanner Initializing ===\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t*)banner, strlen(banner), HAL_MAX_DELAY);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+    HAL_UART_Transmit(&huart2, (uint8_t*)"Scanning I2C bus (0x01 to 0x77)...\r\n", 36, HAL_MAX_DELAY);
+    uint8_t devicesFound = 0;
+    for (uint8_t addr = 1; addr < 128; addr++)
+    {
+      if (HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(addr << 1), 2, 10) == HAL_OK)
+      {
+        devicesFound++;
+        snprintf(scanMsg, sizeof(scanMsg), " -> I2C device detected at 7-bit address 0x%02X\r\n", addr);
+        HAL_UART_Transmit(&huart2, (uint8_t*)scanMsg, strlen(scanMsg), HAL_MAX_DELAY);
+      }
+    }
+    if (devicesFound == 0)
+    {
+      HAL_UART_Transmit(&huart2, (uint8_t*)" -> No I2C devices responded.\r\n", 31, HAL_MAX_DELAY);
+    }
+    HAL_UART_Transmit(&huart2, (uint8_t*)"Scan complete. Next scan in 5 seconds.\r\n\r\n", 42, HAL_MAX_DELAY);
+    HAL_Delay(5000);
   }
   /* USER CODE END 3 */
 }

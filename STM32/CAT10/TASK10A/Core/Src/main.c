@@ -138,9 +138,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+    /* Bridge serial characters between PC (USART1) and ESP8266 (USART2) */
+    if (HAL_UART_Receive(&huart1, &c, 1, 10) == HAL_OK)
+    {
+      HAL_UART_Transmit(&huart2, &c, 1, 10);
+    }
+    if (HAL_UART_Receive(&huart2, &c, 1, 10) == HAL_OK)
+    {
+      HAL_UART_Transmit(&huart1, &c, 1, 10);
+    }
   }
   /* USER CODE END 3 */
 }

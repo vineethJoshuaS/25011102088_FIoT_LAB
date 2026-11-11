@@ -8,14 +8,14 @@
 
 **COURSE:** Foundations of IoT (FIoT)
 
-**NAME OF EXP:** CAT 13 Task 13: MQTT Protocol Handshake & Telemetry Publisher
+**NAME OF EXP:** CAT 13 Task 13: End-to-End Capstone IoT Weather Telemetry Station
 
 **HARDWARE SETUP / PLATFORM:** Embedded Development Kit + Keil / STM32CubeIDE
 
 ---
 
 ## 1. Objective
-To perform MQTT protocol handshake with public broker (broker.emqx.io:1883) via ESP8266 and publish periodic telemetry packets with QoS 0.
+To integrate Bosch BME280 sensor acquisition over I2C with ESP8266 Wi-Fi connectivity and stream formatted JSON telemetry to MQTT cloud brokers.
 
 ---
 
@@ -23,8 +23,9 @@ To perform MQTT protocol handshake with public broker (broker.emqx.io:1883) via 
 
 | Microcontroller Pin | Peripheral Line | Description |
 |:---:|:---:|:---|
-| **PA9 / PA10** | USART1 | ESP8266 Wi-Fi Module |
-| **TCP 1883** | MQTT Broker | broker.emqx.io |
+| **PB6 / PB7** | I2C1 | BME280 Sensor (SCL/SDA) |
+| **PA9 / PA10** | USART1 | ESP8266 Wi-Fi Module (TX/RX) |
+| **PA2 / PA3** | USART2 | Debug Serial Console (115200 Baud) |
 
 ---
 
@@ -34,13 +35,16 @@ To perform MQTT protocol handshake with public broker (broker.emqx.io:1883) via 
 ---
 
 ## 4. Theory & Technical Overview
-The experiment utilizes embedded peripheral drivers, hardware abstraction libraries, and structured control flow to achieve real-time deterministic execution.
+The system coordinates three subsystem layers on STM32 ARM Cortex-M4:
+1. **Sensor Acquisition Layer**: Reads calibrated ambient temperature, barometric pressure, and relative humidity from the Bosch BME280 over the I2C1 bus.
+2. **Connectivity Layer**: Drives the ESP8266 Wi-Fi SoC using AT commands over USART1, establishing station connectivity with the local wireless network.
+3. **Application & Cloud Layer**: Encapsulates telemetry into lightweight MQTT fixed-header packets via `ESPLib` and publishes messages to the MQTT broker (`broker.emqx.io`).
 
 ---
 
 ## 5. Build, Flash & Verification Steps
-1. Open the Keil project file (`*.uvproj` or `MDK-ARM/*.uvprojx`).
+1. Open the Keil project file (`MDK-ARM/IOT_project.uvprojx` or `MDK-ARM/TASK13.uvprojx`).
 2. Build the target firmware (Press `F7`).
-3. Connect the hardware debugger (USBasp for 8051 or ST-Link V2 for STM32).
+3. Connect the ST-Link V2 debugger via SWD interface.
 4. Download the compiled binary (`F8`).
-5. Open serial terminal or inspect visual indicators to verify task execution.
+5. Open serial terminal at 115200 baud to monitor Wi-Fi connection, MQTT handshake, and periodic telemetry publishes.

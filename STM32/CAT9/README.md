@@ -1,19 +1,11 @@
-# CONTINUOUS ASSESSMENT 9
+# CAT 9: STM32 Hardware Timers & Serial Control
 
-## STM32 UART Serial Command Interface
+## Overview
+Continuous Assessment 9 explores STM32 ARM Cortex-M hardware peripheral timers and serial command reception for embedded control systems.
 
-**STUDENT REGISTER NO:** 25011102088  
-**COURSE:** Foundations of IoT (FIoT)
-
----
-
-### Overview
-This folder contains the practical implementations, firmware source code, Keil/STM32CubeIDE projects, and hardware documentation for STM32 UART Serial Command Interface.
-
-### Circuit Schematic
 ![Circuit Diagram](circuit.png)
 
 ---
 
 ### Subtasks Index
-Please refer to the subtask directories for individual source code, compilation targets, and technical reports.
+- [TASK9A](TASK9A/): Interactive Serial Command Parser & LED Controller

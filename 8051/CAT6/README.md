@@ -1,19 +1,11 @@
-# CONTINUOUS ASSESSMENT 6
+# CAT 6: 8051 Serial UART Communication
 
-## UART Driver Development & Serial Debugging
+## Overview
+Continuous Assessment 6 explores asynchronous serial communication on the 8051 microcontroller utilizing the on-chip UART peripheral (Mode 1, 8-bit UART, 9600 baud, 11.0592 MHz crystal) configured via Timer 1 auto-reload.
 
-**STUDENT REGISTER NO:** 25011102088  
-**COURSE:** Foundations of IoT (FIoT)
-
----
-
-### Overview
-This folder contains the practical implementations, firmware source code, Keil/STM32CubeIDE projects, and hardware documentation for UART Driver Development & Serial Debugging.
-
-### Circuit Schematic
 ![Circuit Diagram](circuit.png)
 
 ---
 
 ### Subtasks Index
-Please refer to the subtask directories for individual source code, compilation targets, and technical reports.
+- [TASK6A](TASK6A/): Full-Duplex UART Serial Transmitter at 9600 Baud (Mode 1)

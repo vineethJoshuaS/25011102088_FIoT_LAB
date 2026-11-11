@@ -1,19 +1,11 @@
-# CONTINUOUS ASSESSMENT 13
+# CAT 13: Capstone IoT Weather Telemetry Station
 
-## MQTT Cloud Telemetry Client via ESP8266
+## Overview
+Continuous Assessment 13 focuses on full-system IoT edge node integration combining sensor telemetry acquisition (Bosch BME280), microcontroller processing (STM32 ARM Cortex-M4), Wi-Fi communications (ESP8266), and cloud publish-subscribe messaging over MQTT.
 
-**STUDENT REGISTER NO:** 25011102088  
-**COURSE:** Foundations of IoT (FIoT)
-
----
-
-### Overview
-This folder contains the practical implementations, firmware source code, Keil/STM32CubeIDE projects, and hardware documentation for MQTT Cloud Telemetry Client via ESP8266.
-
-### Circuit Schematic
 ![Circuit Diagram](circuit.png)
 
 ---
 
 ### Subtasks Index
-Please refer to the subtask directories for individual source code, compilation targets, and technical reports.
+- [TASK13](TASK13/): End-to-End Capstone IoT Weather Telemetry Station (BME280 + ESP8266 + MQTT)
