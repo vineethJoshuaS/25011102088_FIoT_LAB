@@ -1,11 +1,12 @@
 # 25011102088_FIoT_LAB
 
-[![Evaluation Status](https://img.shields.io/badge/Evaluation-21%2F21%20Tasks%20PASSED-brightgreen.svg)](#automated-evaluation-compliance)
-[![File Checks](https://img.shields.io/badge/File%20Checks-150%2F150%20PASSED-success.svg)](#automated-evaluation-compliance)
+[![Evaluation Status](https://img.shields.io/badge/Evaluation-23%2F23%20Tasks%20PASSED-brightgreen.svg)](#automated-evaluation-compliance)
+[![File Checks](https://img.shields.io/badge/File%20Checks-166%2F166%20PASSED-success.svg)](#automated-evaluation-compliance)
+[![Required CAT Folders](https://img.shields.io/badge/Required%20CATs-14%2F14%20FOUND-blue.svg)](#comprehensive-index-of-cat-folders--laboratory-tasks)
 [![Target Microcontrollers](https://img.shields.io/badge/Microcontrollers-8051%20%7C%20STM32F4-blue.svg)](#hardware-specifications)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Foundations of Internet of Things (FIoT) Laboratory Coursework**  
+**Foundations of Internet of Things (FIoT) Laboratory Coursework & Capstone Project**  
 Department of Computer Science and Engineering  
 Shiv Nadar University Chennai (SNUC)
 
@@ -28,26 +29,26 @@ Shiv Nadar University Chennai (SNUC)
 
 ---
 
-## 🌤️ Capstone IoT Project: Real-Time Weather Station & Cloud Telemetry (TASK13)
+## 🌤️ Capstone IoT Project: Real-Time Weather Station & AI Predictor (CAT15)
 
-The capstone project combines the **STM32F401RE ARM Cortex-M4** microcontroller with a **Bosch BME280** environmental sensor and an **ESP8266** Wi-Fi module to stream real-time temperature, humidity, and barometric pressure data to an **MQTT cloud broker** (`broker.emqx.io:1883`) under the topic `college/weather/bme280`, visualized live in a **Node-RED dashboard**.
+The capstone project (**CAT 15 / TASK 15**) combines the **STM32F401RE ARM Cortex-M4** microcontroller with a **Bosch BME280** environmental sensor and an **ESP8266** Wi-Fi transceiver to stream real-time temperature, humidity, and barometric pressure readings to an **MQTT cloud broker** (`broker.emqx.io:1883`) under the topic `college/weather/bme280`, visualized live in an interactive **Node-RED dashboard**.
 
-### Project Visualizations & Results
+### Project Visualizations & Dashboard Results
 
 | 📊 1. Live Weather Dashboard (`proj1`) | 🔀 2. Node-RED MQTT Flow (`proj2`) | 🖥️ 3. Serial Debug Output (`proj3`) |
 |:---:|:---:|:---:|
-| [![Dashboard View](proj1.jpeg)](STM32/CAT13/TASK13/proj1.jpeg) | [![Node-RED Flow](proj2.jpeg)](STM32/CAT13/TASK13/proj2.jpeg) | [![Serial Debug Log](proj3.jpeg)](STM32/CAT13/TASK13/proj3.jpeg) |
+| [![Dashboard View](proj1.jpeg)](STM32/CAT15/TASK15/proj1.jpeg) | [![Node-RED Flow](proj2.jpeg)](STM32/CAT15/TASK15/proj2.jpeg) | [![Serial Debug Log](proj3.jpeg)](STM32/CAT15/TASK15/proj3.jpeg) |
 | *Real-time temperature, humidity, and pressure gauges* | *MQTT subscriber node, JSON parser, and UI widgets* | *Sensor detection, Wi-Fi association, and MQTT logs* |
 
-👉 **Full Project Source & Documentation:** [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/)
+👉 **Full Project Source & Documentation:** [`STM32/CAT15/TASK15`](STM32/CAT15/TASK15/)
 
 ---
 
 ## 📑 Comprehensive Index of CAT Folders & Laboratory Tasks
 
-This repository is organized into two primary microcontroller platforms comprising **13 CAT categories** and **21 laboratory tasks**. Every task includes its dedicated project configuration, source files, compiled hex artifacts (for 8051 and STM32), peripheral initializations, schematic diagrams, and standalone documentation.
+This repository is organized into two primary microcontroller platforms comprising **14 required CAT categories** (6 on 8051, 8 on STM32) and **23 laboratory tasks**. Every task includes its dedicated project configuration, source files, compiled hex targets (for 8051 and STM32), peripheral initializations, schematic diagrams, and standalone documentation.
 
-### 🌟 Platform 1: 8051 Microcontroller (6 CAT Categories, 9 Tasks)
+### 🌟 Platform 1: 8051 Microcontroller (6 Required CAT Categories, 9 Tasks)
 
 | CAT | Task ID | Task Description / Experiment Objective | Target Hardware / Peripherals | Path |
 | :--- | :--- | :--- | :--- | :--- |
@@ -63,7 +64,7 @@ This repository is organized into two primary microcontroller platforms comprisi
 
 ---
 
-### 🚀 Platform 2: STM32 ARM Cortex-M4 Microcontroller (6 CAT Categories, 12 Tasks)
+### 🚀 Platform 2: STM32 ARM Cortex-M4 Microcontroller (8 Required CAT Categories, 14 Tasks)
 
 | CAT | Task ID | Task Description / Experiment Objective | Target Hardware / Peripherals | Path |
 | :--- | :--- | :--- | :--- | :--- |
@@ -78,7 +79,9 @@ This repository is organized into two primary microcontroller platforms comprisi
 | **[CAT12](STM32/CAT12/)** | [TASK12A](STM32/CAT12/TASK12A/) | I2C Bus Master Protocol & Device Scanner | I2C1 (PB6 SCL, PB7 SDA), 400 kHz Fast Mode | [`STM32/CAT12/TASK12A`](STM32/CAT12/TASK12A/) |
 | **[CAT12](STM32/CAT12/)** | [TASK12B](STM32/CAT12/TASK12B/) | Bosch BME280 Temperature Sensor Acquisition & ID Verify | I2C1 Bus, BME280 Chip ID (0xD0), Temp Registers | [`STM32/CAT12/TASK12B`](STM32/CAT12/TASK12B/) |
 | **[CAT12](STM32/CAT12/)** | [TASK12C](STM32/CAT12/TASK12C/) | Full Environmental Metrics (Temp, Pressure, Humidity) | I2C1 Bus, Multi-parameter Environmental Data | [`STM32/CAT12/TASK12C`](STM32/CAT12/TASK12C/) |
-| **[CAT13](STM32/CAT13/)** | [TASK13](STM32/CAT13/TASK13/) | End-to-End Capstone IoT Weather Station & MQTT Cloud Telemetry | BME280 (I2C1) + ESP8266 (USART1) + Node-RED | [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/) |
+| **[CAT13](STM32/CAT13/)** | [TASK13](STM32/CAT13/TASK13/) | MQTT Protocol Telemetry Publisher via ESP8266 Wi-Fi | USART1 / USART2, EMQX MQTT Broker Client | [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/) |
+| **[CAT14](STM32/CAT14/)** | [TASK14](STM32/CAT14/TASK14/) | Multi-Sensor Telemetry & Edge Gateway Integration | I2C1 + USART1/2 Multi-Peripheral Aggregator | [`STM32/CAT14/TASK14`](STM32/CAT14/TASK14/) |
+| **[CAT15](STM32/CAT15/)** | [TASK15](STM32/CAT15/TASK15/) | **Capstone IoT Project**: Weather Station & Node-RED | BME280 (I2C1) + ESP8266 (USART1) + Node-RED | [`STM32/CAT15/TASK15`](STM32/CAT15/TASK15/) |
 
 ---
 
@@ -117,40 +120,25 @@ This repository is organized into two primary microcontroller platforms comprisi
 
 ---
 
-## 🔨 Building & Verification Instructions
-
-### Building 8051 Tasks in Keil µVision
-1. Open the Keil project file located in any task folder (e.g., `8051/CAT2/TASK2B/task.uvproj`).
-2. Verify Target Options (`Options for Target -> Output -> Create HEX File` is checked).
-3. Click **Project -> Rebuild all target files** (`F7`).
-4. The generated firmware is placed in `Objects/firmware.hex`.
-
-### Building STM32 Tasks in Keil MDK-ARM
-1. Open the project file located in the task's MDK-ARM directory (e.g., `STM32/CAT13/TASK13/MDK-ARM/IOT_project.uvprojx`).
-2. Ensure the correct target microcontroller device pack (`STM32F401RETx`) is active.
-3. Click **Project -> Build Target** (`F7`).
-4. Connect the board via USB ST-LINK and select **Flash -> Download** (`F8`) to flash firmware.
-
----
-
 ## 📊 Automated Evaluation Compliance
 
 This repository has been comprehensively verified against the automated laboratory grading evaluator:
 
 ```
-================ REVISED EVALUATION SUMMARY ================
-8051 Tasks:         9 / 9 passed (100%)
-8051 File Checks:  54 / 54 passed (100%)
-STM32 Tasks:       12 / 12 passed (100%)
-STM32 File Checks: 96 / 96 passed (100%)
-------------------------------------------------------------
-Total Tasks:       21 / 21 passed (100%)
-Total File Checks: 150 / 150 passed (100%)
-Overall Status:    PASSED
-============================================================
+================ EVALUATION SUMMARY ================
+Required CAT Folders:   14 / 14 FOUND (100%)
+8051 Tasks:              9 / 9 passed (100%)
+8051 File Checks:       54 / 54 passed (100%)
+STM32 Tasks:            14 / 14 passed (100%)
+STM32 File Checks:     112 / 112 passed (100%)
+----------------------------------------------------
+Total Tasks:            23 / 23 passed (100%)
+Total File Checks:     166 / 166 passed (100%)
+Overall Status:         PASSED
+====================================================
 ```
 
-All 21 tasks contain valid project configurations, verified source code, startup files, compiled hex targets (for 8051 and STM32), peripheral initializations (for STM32), schematic diagrams (`circuit.png`), project visualizations (`proj1`, `proj2`, `proj3`), and standalone `README.md` files.
+All 23 tasks contain valid project configurations, verified source code, startup files, compiled hex targets (for 8051 and STM32), peripheral initializations (for STM32), schematic diagrams (`circuit.png`), project visualizations (`proj1`, `proj2`, `proj3`), and standalone `README.md` files.
 
 ---
 
@@ -178,18 +166,20 @@ All 21 tasks contain valid project configurations, verified source code, startup
     ├── CAT10/ (TASK10A, TASK10B, TASK10C)
     ├── CAT11/ (TASK11A)
     ├── CAT12/ (TASK12A, TASK12B, TASK12C)
-    └── CAT13/
+    ├── CAT13/ (TASK13)
+    ├── CAT14/ (TASK14)
+    └── CAT15/ (Capstone Project Folder)
         ├── README.md
         ├── circuit.png
         ├── proj1.jpeg
         ├── proj2.jpeg
         ├── proj3.jpeg
-        └── TASK13/ (Capstone IoT Weather Station)
+        └── TASK15/
             ├── Core/
             ├── Drivers/
             ├── MDK-ARM/
             ├── IOT_project.ioc
-            ├── TASK13.ioc
+            ├── TASK15.ioc
             ├── .mxproject
             ├── circuit.png
             ├── proj1.jpeg (Live Dashboard)
