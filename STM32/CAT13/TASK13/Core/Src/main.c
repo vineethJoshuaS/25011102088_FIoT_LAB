@@ -21,7 +21,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bme280.h"
+#include "ESPLib.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,7 +103,7 @@ static void BME280_Delay(uint32_t period, void *intf_ptr);
 
     if (HAL_I2C_Mem_Read(
         &hi2c1,
-        address << 1,a
+        address << 1,
         reg_addr,
         I2C_MEMADD_SIZE_8BIT,
         reg_data,
@@ -376,21 +380,24 @@ Terminal_Print("MQTT CONNECT packet sent!\r\n");
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  char mqttPayload[128];
-  uint32_t pubCount = 0;
   while (1)
   {
-    pubCount++;
-    snprintf(mqttPayload, sizeof(mqttPayload), 
-             "{\"node\":\"STM32_BME280\",\"seq\":%lu,\"temp\":26.2,\"humidity\":59.1,\"pressure\":1012.8}",
-             (unsigned long)pubCount);
-    
-    Terminal_Print("Publishing MQTT Telemetry: ");
-    Terminal_Print(mqttPayload);
-    Terminal_Print("\r\n");
+    /* USER CODE END WHILE */
 
-    MQTT_publishTopic("snuc/iot/telemetry", mqttPayload, QoS0);
-    HAL_Delay(3000);
+    /* USER CODE BEGIN 3 */
+    BME280_ReadData();
+
+    sprintf(mqttMessage,
+            "{\"temperature\":%.2f,\"pressure\":%.2f,\"humidity\":%.2f}",
+            sensor_data.temperature,
+            sensor_data.pressure / 100.0,
+            sensor_data.humidity);
+
+    MQTT_publishTopic(mqttTopic, mqttMessage, QoS0);
+
+    Terminal_Print("MQTT publish function called!\r\n");
+
+    HAL_Delay(5000);
   }
   /* USER CODE END 3 */
 }

@@ -28,9 +28,24 @@ Shiv Nadar University Chennai (SNUC)
 
 ---
 
+## 🌤️ Capstone IoT Project: Real-Time Weather Station & Cloud Telemetry (TASK13)
+
+The capstone project combines the **STM32F401RE ARM Cortex-M4** microcontroller with a **Bosch BME280** environmental sensor and an **ESP8266** Wi-Fi module to stream real-time temperature, humidity, and barometric pressure data to an **MQTT cloud broker** (`broker.emqx.io:1883`) under the topic `college/weather/bme280`, visualized live in a **Node-RED dashboard**.
+
+### Project Visualizations & Results
+
+| 📊 1. Live Weather Dashboard (`proj1`) | 🔀 2. Node-RED MQTT Flow (`proj2`) | 🖥️ 3. Serial Debug Output (`proj3`) |
+|:---:|:---:|:---:|
+| [![Dashboard View](proj1.jpeg)](STM32/CAT13/TASK13/proj1.jpeg) | [![Node-RED Flow](proj2.jpeg)](STM32/CAT13/TASK13/proj2.jpeg) | [![Serial Debug Log](proj3.jpeg)](STM32/CAT13/TASK13/proj3.jpeg) |
+| *Real-time temperature, humidity, and pressure gauges* | *MQTT subscriber node, JSON parser, and UI widgets* | *Sensor detection, Wi-Fi association, and MQTT logs* |
+
+👉 **Full Project Source & Documentation:** [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/)
+
+---
+
 ## 📑 Comprehensive Index of CAT Folders & Laboratory Tasks
 
-This repository is organized into two primary microcontroller platforms comprising **13 CAT categories** and **21 laboratory tasks**. Every task includes its dedicated project configuration, source files, compiled hex artifacts (for 8051), peripheral initializations (for STM32), schematic diagrams, and standalone documentation.
+This repository is organized into two primary microcontroller platforms comprising **13 CAT categories** and **21 laboratory tasks**. Every task includes its dedicated project configuration, source files, compiled hex artifacts (for 8051 and STM32), peripheral initializations, schematic diagrams, and standalone documentation.
 
 ### 🌟 Platform 1: 8051 Microcontroller (6 CAT Categories, 9 Tasks)
 
@@ -63,7 +78,7 @@ This repository is organized into two primary microcontroller platforms comprisi
 | **[CAT12](STM32/CAT12/)** | [TASK12A](STM32/CAT12/TASK12A/) | I2C Bus Master Protocol & Device Scanner | I2C1 (PB6 SCL, PB7 SDA), 400 kHz Fast Mode | [`STM32/CAT12/TASK12A`](STM32/CAT12/TASK12A/) |
 | **[CAT12](STM32/CAT12/)** | [TASK12B](STM32/CAT12/TASK12B/) | Bosch BME280 Temperature Sensor Acquisition & ID Verify | I2C1 Bus, BME280 Chip ID (0xD0), Temp Registers | [`STM32/CAT12/TASK12B`](STM32/CAT12/TASK12B/) |
 | **[CAT12](STM32/CAT12/)** | [TASK12C](STM32/CAT12/TASK12C/) | Full Environmental Metrics (Temp, Pressure, Humidity) | I2C1 Bus, Multi-parameter Environmental Data | [`STM32/CAT12/TASK12C`](STM32/CAT12/TASK12C/) |
-| **[CAT13](STM32/CAT13/)** | [TASK13](STM32/CAT13/TASK13/) | End-to-End Capstone IoT Weather Telemetry Station | BME280 (I2C1) + ESP8266 (USART1) + MQTT Client | [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/) |
+| **[CAT13](STM32/CAT13/)** | [TASK13](STM32/CAT13/TASK13/) | End-to-End Capstone IoT Weather Station & MQTT Cloud Telemetry | BME280 (I2C1) + ESP8266 (USART1) + Node-RED | [`STM32/CAT13/TASK13`](STM32/CAT13/TASK13/) |
 
 ---
 
@@ -89,13 +104,16 @@ This repository is organized into two primary microcontroller platforms comprisi
 
 1. **Keil µVision MDK-ARM & C51:**
    - **Keil C51 v9.60a** for compiling 8051 tasks into Intel HEX format (`Objects/*.hex`).
-   - **Keil MDK-ARM v5.38+** with STM32F4xx Device Family Pack (DFP) for Cortex-M compilation.
+   - **Keil MDK-ARM v5.38+** with STM32F4xx Device Family Pack (DFP) for Cortex-M compilation (`MDK-ARM/*.hex`).
 2. **STM32CubeMX:**
    - Graphical peripheral configuration, clock tree distribution, pinout routing, and HAL code generation (`.ioc` and `.mxproject`).
 3. **Hardware Emulators & Debuggers:**
    - ST-LINK/V2 Debug Utility & STM32CubeProgrammer.
    - Proteus 8 Professional VSM for 8051 schematic circuit simulation.
    - Serial Terminals (PuTTY / Tera Term / Serial Monitor) for USART / UART communication at 9600 & 115200 baud.
+4. **Cloud & Visualization:**
+   - **EMQX Public MQTT Broker:** `broker.emqx.io` on TCP port 1883.
+   - **Node-RED:** Flow-based development tool running locally on port 1880 with Node-RED Dashboard.
 
 ---
 
@@ -108,8 +126,8 @@ This repository is organized into two primary microcontroller platforms comprisi
 4. The generated firmware is placed in `Objects/firmware.hex`.
 
 ### Building STM32 Tasks in Keil MDK-ARM
-1. Open the project file located in the task's MDK-ARM directory (e.g., `STM32/CAT8/TASK8A/MDK-ARM/TASK8A.uvprojx`).
-2. Ensure the correct target microcontroller device pack (`STM32F401RETx` / `STM32F401CCU6`) is active.
+1. Open the project file located in the task's MDK-ARM directory (e.g., `STM32/CAT13/TASK13/MDK-ARM/IOT_project.uvprojx`).
+2. Ensure the correct target microcontroller device pack (`STM32F401RETx`) is active.
 3. Click **Project -> Build Target** (`F7`).
 4. Connect the board via USB ST-LINK and select **Flash -> Download** (`F8`) to flash firmware.
 
@@ -132,7 +150,7 @@ Overall Status:    PASSED
 ============================================================
 ```
 
-All 21 tasks contain valid project configurations, verified source code, startup files, compiled hex targets (for 8051), peripheral initializations (for STM32), schematic diagrams (`circuit.png`), and standalone `README.md` files.
+All 21 tasks contain valid project configurations, verified source code, startup files, compiled hex targets (for 8051 and STM32), peripheral initializations (for STM32), schematic diagrams (`circuit.png`), project visualizations (`proj1`, `proj2`, `proj3`), and standalone `README.md` files.
 
 ---
 
@@ -144,6 +162,9 @@ All 21 tasks contain valid project configurations, verified source code, startup
 ├── LICENSE
 ├── README.md
 ├── circuit.png
+├── proj1.jpeg
+├── proj2.jpeg
+├── proj3.jpeg
 ├── 8051/
 │   ├── CAT2/ (TASK2B)
 │   ├── CAT3/ (TASK3A)
@@ -157,7 +178,24 @@ All 21 tasks contain valid project configurations, verified source code, startup
     ├── CAT10/ (TASK10A, TASK10B, TASK10C)
     ├── CAT11/ (TASK11A)
     ├── CAT12/ (TASK12A, TASK12B, TASK12C)
-    └── CAT13/ (TASK13)
+    └── CAT13/
+        ├── README.md
+        ├── circuit.png
+        ├── proj1.jpeg
+        ├── proj2.jpeg
+        ├── proj3.jpeg
+        └── TASK13/ (Capstone IoT Weather Station)
+            ├── Core/
+            ├── Drivers/
+            ├── MDK-ARM/
+            ├── IOT_project.ioc
+            ├── TASK13.ioc
+            ├── .mxproject
+            ├── circuit.png
+            ├── proj1.jpeg (Live Dashboard)
+            ├── proj2.jpeg (Node-RED Flow)
+            ├── proj3.jpeg (Serial Debug Logs)
+            └── README.md
 ```
 
 ---

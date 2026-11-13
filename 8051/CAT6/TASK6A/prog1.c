@@ -1,4 +1,4 @@
-﻿/**
+/**
  ******************************************************************************
  * @file    prog1.c
  * @brief   CAT 6 Task 6A: 8051 Full-Duplex UART Serial Transmitter
